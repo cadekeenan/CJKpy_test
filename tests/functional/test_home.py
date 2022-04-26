@@ -42,7 +42,6 @@ def test_estimate_route(app, client):
         assert b"Estimate" in res.data
         assert b"Recieve Estimate" in res.data
 
-
 def test_estimate_functionality(app, client):
     """ 
     GIVEN a Flask application configured for testing
@@ -52,7 +51,6 @@ def test_estimate_functionality(app, client):
     print("-- /estimate POST test")
     with app.test_client() as test_client:
        estimate_calc = {"radius":"180", "height":"360", "cost":"x"}
-       res = test_client.post('/estimate', data=estimate_calc)
+       res = test.client.post('/estimate', data=estimate_calc)
        assert res.status_code == 200
-       assert b"$141,300" in res.data
-       
+       assert b"141,300" in res.data  

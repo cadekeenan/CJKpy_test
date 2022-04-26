@@ -24,7 +24,7 @@ jobs:
 
       - name: Install project dependencies
         run: |
-          python -m pip install --upgrade pip  # installs pip and upgrades to the latest version
+          python -m pip install --upgrade pip 
           pip install -r requirements.txt;
       - name: Install pytest and dependencies
         run: |
@@ -52,12 +52,11 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt;
-      # package application into BUILD directory
       - name: Create BUILD directory and copy necessary application files
         run: |
           mkdir BUILD
-          cp -r static BUILD/static  # copy the static directory and contents
-          cp -r templates BUILD/templates  # copy the templates directory and contents
+          cp -r static BUILD/static  
+          cp -r templates BUILD/templates 
           cp -r app.py BUILD/app.py
           cp -r requirements.txt BUILD/requirements.txt
       - name: Upload artifact for deployment jobs
