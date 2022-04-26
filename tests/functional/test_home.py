@@ -52,8 +52,7 @@ def test_estimate_functionality(app, client):
     print("-- /estimate POST test")
     with app.test_client() as test_client:
        estimate_calc = {"radius":"180", "height":"360", "cost":"x"}
-        res = test_client.post('/estimate', data=estimate_calc)
-        assert res.status_code == 200
-        assert b"$141,300" in res.data 
-
-    
+       res = test_client.post('/estimate', data=estimate_calc)
+       assert res.status_code == 200
+       assert b"$141,300" in res.data
+       
