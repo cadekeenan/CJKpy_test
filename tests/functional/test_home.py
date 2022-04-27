@@ -11,7 +11,6 @@ def test_index_route(app, client):
     with app.test_client() as test_client:
         res = test_client.get('/')
         assert res.status_code == 200
-        assert b"Beeno's Friends" in res.data # &#39; was used in place of '
         assert b"My List of Friends" in res.data
         assert b"My Friends" in res.data
 
