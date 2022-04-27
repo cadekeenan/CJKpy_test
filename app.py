@@ -36,7 +36,31 @@ def estimate():
         total_labor_cost = labor_cost*total_sqft
         cost = total_material_cost + total_labor_cost
         return str("${:,.2f}".format(cost))
-    return render_template('estimate.html', pageTitle='Estimate')
+    return render_template('estimates.html', pageTitle='Estimate')
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+def test_estimate_functionality(app, client): 
+
+    """  
+
+    GIVEN a Flask application configured for testing 
+
+    WHEN the '/estimate' route is requested (POST) 
+
+    THEN check that the new user is added to the list 
+
+    """ 
+
+    print("-- /estimate POST test") 
+
+    with app.test_client() as test_client: 
+
+       estimate_calc = {"radius":"180", "height":"360"} 
+
+       res = test.client.post('/estimate', data=estimate_calc) 
+
+       assert res.status_code == 200 
+
+       assert b"141,300" in res.data   
