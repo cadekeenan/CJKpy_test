@@ -51,8 +51,32 @@ def test_estimate_route(app, client):
 
     with app.test_client() as test_client: 
 
-        res = test_client.get('/estimate') 
+        res = test_client.get('/estimates') 
 
         assert res.status_code == 200 
 
         assert b"VTM Cost Estimates" in res.data 
+
+def test_estimate_functionality(app, client): 
+
+    """  
+
+    GIVEN a Flask application configured for testing 
+
+    WHEN the '/estimate' route is requested (POST) 
+
+    THEN check that the new user is added to the list 
+
+    """ 
+
+    print("-- /estimates POST test") 
+
+    with app.test_client() as test_client: 
+
+       estimate_calc = {"radius":"180", "height":"360"} 
+
+       res = test_client.post('/estimates', data=estimate_calc) 
+
+       assert res.status_code == 200 
+
+       assert b"141,300" in res.data 
